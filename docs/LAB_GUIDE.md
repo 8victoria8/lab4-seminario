@@ -226,14 +226,6 @@ git diff --stat -- tests    # debe estar vacío: las pruebas no se tocaron
 git commit -am "refactor: dividir calculatePricing en funciones pequeñas"
 ```
 
-### 4.6 Compara con la solución de referencia
-
-```bash
-git diff HEAD after-refactor -- shared/pricing.ts
-```
-
-No tienes que coincidir línea a línea: lo importante es que **tus pruebas originales** estén en verde.
-
 **Preguntas**
 
 - ¿Cuántas veces se puso roja una prueba durante tu refactor? ¿Qué te dijo el mensaje?

@@ -122,25 +122,17 @@ Detalle completo y criterios de aceptación en [docs/ACCEPTANCE_CRITERIA.md](doc
 
 La lógica de precios está **una sola vez** en `shared/`: el frontend la usa para mostrar importes al instante y el servidor la vuelve a aplicar al crear el pedido (nunca confía en el cliente).
 
-## Puntos del historial Git para la demostración
+## Punto de partida del laboratorio
 
-| Referencia | Contenido |
-|---|---|
-| `before-refactor` (rama `main`) | App completa con la implementación original de `calculatePricing` (larga y anidada). Todas las pruebas pasan. |
-| `after-refactor` (rama `solution/after-refactor`) | Solo cambia `shared/pricing.ts`: funciones pequeñas. **Las pruebas no se tocan** y siguen pasando. |
-
-```bash
-git diff before-refactor after-refactor --stat      # solo shared/pricing.ts
-git diff before-refactor after-refactor             # el refactor completo
-```
+La rama `main` (tag `before-refactor`) contiene la app completa con la implementación original de `calculatePricing`: larga y anidada, pero correcta. Todas las pruebas pasan. A partir de ahí los estudiantes realizan su propio refactor.
 
 ## Documentación
 
 - [docs/LAB_GUIDE.md](docs/LAB_GUIDE.md) — guía paso a paso para estudiantes (6 actividades)
-- [docs/TEACHER_GUIDE.md](docs/TEACHER_GUIDE.md) — guía del docente, guion de demostración y distribución de 120 min
 - [docs/ACCEPTANCE_CRITERIA.md](docs/ACCEPTANCE_CRITERIA.md) — historia de usuario y criterios Given–When–Then
 - [docs/TEST_PLAN.md](docs/TEST_PLAN.md) — matriz de pruebas
 - [docs/PR_TEMPLATE.md](docs/PR_TEMPLATE.md) — plantilla de Pull Request
+- [docs/LAB_ASSIGNMENT.md](docs/LAB_ASSIGNMENT.md) — versión evaluable del laboratorio (8 actividades, 100 puntos)
 
 ## Solución de problemas
 

@@ -36,7 +36,7 @@
 | **RN-11** Pedido inválido no consume numeración | Unitaria (mock) | U-15 con `vi.fn()` | `generateOrderNumber` no fue llamado; `listOrders()` vacío |
 | **Aislamiento** Ruta de reinicio solo en test | E2E (fixture) | `tests/e2e/fixtures.ts`: `POST /api/test/reset` antes de cada prueba | Responde `204` con `NODE_ENV=test` (en desarrollo la ruta no existe: 404) |
 | **Calidad estática** | Typecheck · Lint | `npm run typecheck` · `npm run lint` | 0 errores de tipos y de lint |
-| **Refactor seguro** | Unitaria + E2E (sin modificar) | Mismas 15 + 12 pruebas sobre `before-refactor` y `after-refactor` | 27/27 en verde en ambas versiones; `git diff -- tests` vacío |
+| **Refactor seguro** | Unitaria + E2E (sin modificar) | Mismas 15 + 12 pruebas antes y después del refactor | 27/27 en verde con ambas implementaciones; `git diff -- tests` vacío |
 | **Detección de regresiones** | Unitaria + E2E | Cambiar `>=` por `>` en el umbral de envío gratis | Falla U-06 y E2E 07; el resto en verde |
 
 ## 3. Ambientes y ejecución
