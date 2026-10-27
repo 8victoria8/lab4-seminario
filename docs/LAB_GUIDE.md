@@ -6,17 +6,39 @@
 
 Trabajarás sobre MiniShop, una tienda mínima con catálogo, carrito, cupones y checkout. Al final habrás visto con tus propios ojos que un buen conjunto de pruebas te permite **refactorizar sin miedo** y **detectar errores** en segundos.
 
+> **¿Qué se entrega?** Esta guía te explica cada paso. Lo que se **califica** está en [LAB_ASSIGNMENT.md](LAB_ASSIGNMENT.md) (8 actividades, 100 puntos): allí respondes preguntas, escribes tu prueba y entregas el Pull Request.
+>
+> | Esta guía | Se responde en LAB_ASSIGNMENT |
+> |---|---|
+> | Actividad 1 — Exploración | Actividad 1 |
+> | Actividad 2 — Pruebas unitarias | Actividades 2 y 3 |
+> | Actividad 3 — Pruebas E2E | Actividad 4 |
+> | Actividad 4 — Refactorización | Actividad 5 |
+> | Actividad 5 — Regresión | Actividad 6 |
+> | Actividad 6 — Pull Request | Actividad 7 (más la reflexión final, Actividad 8) |
+
 ## Preparación (antes de empezar)
 
+Repositorio base: <https://github.com/Ditmar/lab4-seminario>
+
+1. Haz un **Fork** del repositorio en tu cuenta de GitHub.
+2. Clona **tu fork** e instala:
+
 ```bash
+git clone https://github.com/TU-USUARIO/lab4-seminario.git
+cd lab4-seminario
 npm install
 npm run e2e:install        # solo la primera vez: descarga Chromium
 npm run test:all           # comprobación inicial: todo debe estar en verde
 ```
 
-> Si `npm run test:all` no termina en verde, avisa al docente antes de continuar.
+Se requiere **Node.js 20 o superior** (`node --version`).
 
-Crea tu rama de trabajo (no trabajes directamente sobre `main`):
+> Debes ver typecheck sin errores, **5 avisos de lint** (todos en `shared/pricing.ts`), 15 pruebas unitarias y 12 E2E en verde. Si no es así, avisa al docente antes de continuar.
+
+3. En tu fork, abre la pestaña **Actions** y habilita los workflows (los forks los traen desactivados). Los necesitarás en la Actividad 6.
+
+4. Crea tu rama de trabajo (no trabajes directamente sobre `main`):
 
 ```bash
 git switch -c lab/<tu-nombre>
@@ -317,12 +339,12 @@ Prueba cada cambio (revirtiendo con `git restore shared/pricing.ts` entre uno y 
 **Objetivo:** entregar tu refactor como lo haría un equipo profesional, con evidencia.
 
 1. Asegúrate de que tu rama tiene **solo** el commit del refactor (la regresión de la Actividad 5 revertida) y de que tu prueba nueva de la Actividad 2 está incluida si quieres entregarla (sepárala en otro commit).
-2. Sube la rama y abre el PR:
+2. Sube la rama a **tu fork** y abre el PR hacia el repositorio base:
 
    ```bash
    git push -u origin lab/<tu-nombre>
-   gh pr create --base main --title "refactor: dividir calculatePricing en funciones pequeñas"
-   # o abre el PR desde la web de GitHub
+   gh pr create --repo Ditmar/lab4-seminario --base main --title "refactor: dividir calculatePricing en funciones pequeñas"
+   # o abre el PR desde la web de GitHub (botón "Compare & pull request" en tu fork)
    ```
 3. Usa la plantilla [docs/PR_TEMPLATE.md](PR_TEMPLATE.md) como descripción. Completa **todas** las secciones.
 4. Espera a que **GitHub Actions** termine (workflow *CI*). Debe verse en verde: tipos, lint, unitarias y E2E.
@@ -332,15 +354,17 @@ Prueba cada cambio (revirtiendo con `git restore shared/pricing.ts` entre uno y 
    - La prueba de que no tocaste las pruebas: `git diff --stat origin/main -- tests` (o muestra qué archivos cambiaron en la pestaña *Files changed*).
 6. En *Riesgos conocidos* menciona qué podría salir mal y cómo las pruebas lo mitigan (y qué **no** cubren).
 
-**Criterios de evaluación sugeridos**
+**¿Qué se evalúa en el PR?** (30 de los 100 puntos de [LAB_ASSIGNMENT.md](LAB_ASSIGNMENT.md))
 
 | Criterio | Puntos |
-|---|---|
-| El refactor reduce la complejidad (0 avisos de lint) y el comportamiento no cambia | 3 |
-| Las pruebas originales no fueron modificadas y todas pasan (local + CI) | 3 |
-| La descripción del PR está completa y con evidencia verificable | 2 |
-| La prueba unitaria propia (Actividad 2) es clara y correcta | 1 |
-| Análisis de la regresión (Actividad 5) | 1 |
+|---|---:|
+| Las pruebas existentes no fueron modificadas | 7 |
+| `calculatePricing()` descompuesta en funciones pequeñas con responsabilidades claras | 7 |
+| Código simplificado (menos anidamiento, sin repeticiones) y `npm run lint` sin avisos | 6 |
+| Comportamiento preservado (misma firma, reglas, errores y umbral de envío) | 5 |
+| Descripción del PR completa y con evidencia verificable | 5 |
+
+El análisis de la regresión (Actividad 5) y la prueba unitaria propia (Actividad 2) se califican aparte, en las Actividades 6 y 3 del laboratorio evaluable.
 
 ---
 
